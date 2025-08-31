@@ -1,7 +1,7 @@
 # EXPRESSO - UN MINILENGUAJE MUY CONCENTRADO
 ## SPRING INICIAL
 
-*Versión:* 31/08/2025 v1.1 
+*Versión:* 30/08/2025 v1.1 
 *Curso:* EIF400 – Paradigmas de Programación (II-2025)
 
 *Autores:*  
@@ -123,3 +123,4 @@ expresso/
 - **src/main/java/prdgms/** → Código fuente principal, incluyendo la clase `Expressor` con la lógica de la CLI.  
 - **src/test/java/prdgms/** → Destinado a pruebas unitarias (a completar en futuros sprints).  
 - **target/** → Carpeta de salida de Maven con artefactos compilados (`.class`, `.jar`) y metadatos de construcción.  
+
