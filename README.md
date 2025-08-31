@@ -38,6 +38,7 @@ El entregable actual incluye una herramienta CLI **expressor** desarrollada en J
 ---
 
 ## REQUISITOS TÉCNICOS
+- SO: **Windows 10/11**
 - Lenguaje: **Java 23+**  
 - Parser: **ANTLR4**  
 - Gestión de dependencias: **Maven o Gradle** (se puede compilar sin IDE) (En este caso se usa Maven) 
@@ -74,6 +75,64 @@ mvn clean package
 ```
 
 ---
+
+## GUIA RAPIDA PARA INSTALAR EXPRESSOR
+
+**Compilar el `.jar` del proyecto**
+En la raiz del proyecto, ejecuta:
+```
+mvn clean package
+```
+El cual generará el archivo `expresso-1.0-SNAPSHOT.jar` dentro de `target/`.
+
+**Crear la imagen de la app con Jpackage**
+Este paso difiere dependiedo si se hace desde cmd o desde terminal/powershell.
+
+- CMD (Símbolo del sistema)
+```
+jpackage --type app-image --name expressor ^
+  --input ".\target" ^
+  --main-jar "expresso-1.0-SNAPSHOT.jar" ^
+  --main-class "prdgms.Expressor" ^
+  --app-version 1.0 ^
+  --java-options "--enable-preview" ^
+  --win-console ^
+  --dest "."
+
+mkdir ".\expressor\app\resources" 2>nul
+
+xcopy ".\resources" ".\expressor\app\resources" /E /I /Y >nul
+
+```
+-PoweShell / Terminal
+```
+jpackage --type app-image `
+  --name expressor `
+  --input ".\target" `
+  --main-jar "expresso-1.0-SNAPSHOT.jar" `
+  --main-class "prdgms.Expressor" `
+  --app-version 1.0 `
+  --java-options "--enable-preview" `
+  --win-console `
+  --dest "."
+New-Item -ItemType Directory -Force -Path ".\expressor\app\resources" | Out-Null
+Copy-Item -Recurse -Force ".\resources\*" ".\expressor\app\resources\"
+
+```
+**"Instalar" moviendo la ruta al PATH**
+Para que expressor se pueda ejecutar desde cualquier carpeta del sistema, se necesita agregarla a las variables de entorno de Windows.
+- Mueve la carpeta expressor/ que generó el paso anterior a la ubicación que prefieras, por ejemplo `C:/Tools/expressor`.
+- Agrega `C:/Tools/expressor` (Esta ruta contiene el ejecutable .exe) al PATH de usuario:
+   1. Abre Editar las variables de entorno del sistema → Variables de entorno.
+   2. En Variables de usuario, selecciona la opción llamada PATH → Editar → Nuevo.
+   3. Escribe la ruta de expressor y guarda con Aceptar en todas las ventanas.
+
+**Usar la herramienta**
+Desde cmd, se puede ejecutar 
+```
+expressor --help
+```
+Para probar que expressor funciona correctamente.
 
 ## ESTRUCTURA DEL PROYECTO
 
@@ -123,4 +182,22 @@ expresso/
 - **src/main/java/prdgms/** → Código fuente principal, incluyendo la clase `Expressor` con la lógica de la CLI.  
 - **src/test/java/prdgms/** → Destinado a pruebas unitarias (a completar en futuros sprints).  
 - **target/** → Carpeta de salida de Maven con artefactos compilados (`.class`, `.jar`) y metadatos de construcción.  
+
+### Referencias(Ordenadas en orden Alfabético):
+
+- Apache Maven Project. (2023). Introducción al ciclo de vida de Maven. Recuperado de https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html
+
+- Apache Software Foundation. Maven Compiler Plugin. Obtenido de https://maven.apache.org/plugins/maven-compiler-plugin
+
+- Apache Software Foundation. Maven Shade Plugin. Obtenido de https://maven.apache.org/plugins/maven-shade-plugin
+
+- ChatGPT (OpenAI). (29 de agosto de 2025). “El sistema no puede encontrar la ruta especificada” [Conversa compartida]. ChatGPT. https://chatgpt.com/share/68b3e03d-608c-8010-88eb-87de7a1f7904
+
+- ChatGPT (OpenAI). (30 de agosto de 2025). “El problema es que --resource-dir resources no está pasando/copiando la carpeta resources correctamente al empaquetado, a pesar de que esta carpeta ya existe y tiene datos. ¿Sabes por qué ocurre esto?” [Conversa compartida]. ChatGPT. https://chatgpt.com/share/68b3e0d4-18e0-8000-b83a-0fbf2844ea1e
+
+- Claude AI (Anthropic). (29 de agosto de 2025). “Crear un proyecto Maven en Java” [Conversa compartida]. Claude AI. https://claude.ai/share/45f7afb7-1f77-4e37-a1b8-97e175c9c561
+
+- Oracle. (2023). jpackage: Empaquetado de aplicaciones Java. Documentación oficial de Java SE 21. Recuperado de https://docs.oracle.com/en/java/javase/21/jpackage
+
+- Picocli. Documentación oficial. Recuperado de https://picocli.info
 
