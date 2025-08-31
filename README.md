@@ -1,5 +1,5 @@
 # EXPRESSO - UN MINILENGUAJE MUY CONCENTRADO
-## SPRING INICIAL
+## SPRINT INICIAL
 
 *Versión:* 30/08/2025 v1.1 
 *Curso:* EIF400 – Paradigmas de Programación (II-2025)
@@ -79,6 +79,7 @@ mvn clean package
 ## GUIA RAPIDA PARA INSTALAR EXPRESSOR
 
 **Compilar el `.jar` del proyecto**
+
 En la raiz del proyecto, ejecuta:
 ```
 mvn clean package
@@ -86,6 +87,7 @@ mvn clean package
 El cual generará el archivo `expresso-1.0-SNAPSHOT.jar` dentro de `target/`.
 
 **Crear la imagen de la app con Jpackage**
+
 Este paso difiere dependiedo si se hace desde cmd o desde terminal/powershell.
 
 - CMD (Símbolo del sistema)
@@ -120,6 +122,7 @@ Copy-Item -Recurse -Force ".\resources\*" ".\expressor\app\resources\"
 
 ```
 **"Instalar" moviendo la ruta al PATH**
+
 Para que expressor se pueda ejecutar desde cualquier carpeta del sistema, se necesita agregarla a las variables de entorno de Windows.
 - Mueve la carpeta expressor/ que generó el paso anterior a la ubicación que prefieras, por ejemplo `C:/Tools/expressor`.
 - Agrega `C:/Tools/expressor` (Esta ruta contiene el ejecutable .exe) al PATH de usuario:
@@ -128,6 +131,7 @@ Para que expressor se pueda ejecutar desde cualquier carpeta del sistema, se nec
    3. Escribe la ruta de expressor y guarda con Aceptar en todas las ventanas.
 
 **Usar la herramienta**
+
 Desde cmd, se puede ejecutar 
 ```
 expressor --help
@@ -183,7 +187,7 @@ expresso/
 - **src/test/java/prdgms/** → Destinado a pruebas unitarias (a completar en futuros sprints).  
 - **target/** → Carpeta de salida de Maven con artefactos compilados (`.class`, `.jar`) y metadatos de construcción.  
 
-### Referencias(Ordenadas en orden Alfabético):
+## Referencias(Ordenadas en orden Alfabético):
 
 - Apache Maven Project. (2023). Introducción al ciclo de vida de Maven. Recuperado de https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html
 
@@ -200,4 +204,5 @@ expresso/
 - Oracle. (2023). jpackage: Empaquetado de aplicaciones Java. Documentación oficial de Java SE 21. Recuperado de https://docs.oracle.com/en/java/javase/21/jpackage
 
 - Picocli. Documentación oficial. Recuperado de https://picocli.info
+
 
