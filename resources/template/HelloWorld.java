@@ -7,10 +7,12 @@
           Maquerly Nuñez Morales 
           Randy Nuñez Vargas
  */
+
+ /* Test class that says Hello World 10 times.*/
 public class HelloWorld {
     public static void main(String[] args) {
         for (int i = 1; i <= 10; i++) {
-            System.out.println("Hola mundo " + i);
+            System.out.println("Hello World " + i);
         }
     }
 }

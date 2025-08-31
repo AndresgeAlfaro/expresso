@@ -27,15 +27,8 @@
   </properties>
 
   <dependencies>
-    <!-- Dependencia para pruebas (opcional) -->
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
 
-    <!-- Dependencia de Picocli -->
+    <!-- Picocli -->
     <dependency>
       <groupId>info.picocli</groupId>
       <artifactId>picocli</artifactId>
@@ -45,14 +38,14 @@
 
   <build>
     <plugins>
-      <!-- Plugin para compilar -->
+      <!-- Compiler Plugin -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.8.1</version>
       </plugin>
 
-      <!-- Plugin para crear un fat-jar -->
+      <!-- Fat-Jar plugin -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-shade-plugin</artifactId>
