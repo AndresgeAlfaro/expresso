@@ -6,10 +6,6 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-//import java.io.*;
-//import java.nio.file.*;
-//import java.util.*;
-
 public class JavaCompilerService {
 
     private static boolean isWindows() {
@@ -22,8 +18,13 @@ public class JavaCompilerService {
         }
 
         String javaHome = System.getProperty("java.home");
-        Path javaPath = Paths.get(javaHome, "bin", isWindows() ? "javac.exe" : "javac");
-        return javaPath.toString();
+        
+        return Paths.get(javaHome, "bin", isWindows() ? "javac.exe" : "javac").toString();
+    }
+
+    private static String runtimeBin(){
+        String javaHome = System.getProperty("java.home");
+        return Paths.get(javaHome, "bin", isWindows() ? "java.exe" : "java").toString();
     }
 
     public static void compileJava(Path javaInput, Path outputDir)
@@ -48,4 +49,32 @@ public class JavaCompilerService {
         }
 
     }   
+
+    //called by run
+    public static void runClass(String mainClass, Path classpath)
+            throws IOException, InterruptedException {
+
+        List<String> command = new ArrayList<>();
+        command.add(runtimeBin());
+        command.add("-cp");
+        command.add(classpath.toString());
+        command.add(mainClass);
+
+        exec(command);
+    }
+ 
+    // execute
+    private static void exec(List<String> command)
+            throws IOException, InterruptedException {
+        ProcessBuilder pb = new ProcessBuilder(command);
+        pb.inheritIO(); 
+        //pb.start can throw IOException
+        Process process = pb.start();
+        //.waitfor() can throw InterruptedException
+        int exitCode = process.waitFor();
+        if (exitCode != 0) {
+            throw new IOException("Process failed with exit code " + exitCode + ": " + command);
+        }
+    }
+
 }

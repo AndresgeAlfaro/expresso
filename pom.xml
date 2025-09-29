@@ -16,6 +16,12 @@
     </properties>
     
     <dependencies>
+        <dependency>
+            <groupId>info.picocli</groupId>
+            <artifactId>picocli</artifactId>
+            <version>4.7.6</version>
+        </dependency>
+
         <!-- Runtime de ANTLR para usar los parsers generados -->
         <dependency>
             <groupId>org.antlr</groupId>
@@ -66,6 +72,40 @@
                 <configuration>
                     <mainClass>expresso.cli.Repl</mainClass>
                 </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.3.0</version>
+                <configuration>
+                    <archive>
+                    <manifest>
+                        <mainClass>expresso.cli.Expressor</mainClass>
+                    </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.5.3</version>
+                <executions>
+                    <execution>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>shade</goal>
+                    </goals>
+                    <configuration>
+                        <transformers>
+                        <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                            <mainClass>expresso.cli.Expressor</mainClass>
+                        </transformer>
+                        </transformers>
+                    </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
