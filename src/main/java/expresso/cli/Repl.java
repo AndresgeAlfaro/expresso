@@ -12,7 +12,7 @@ public class Repl {
             String line = sc.nextLine();
             if (line.equals(".exit")) break;
             try {
-                int result = ParseEvaluate.run(line);
+                int result = ParseEvaluate.runExpression(line);
                 System.out.println(result);
             } catch (Exception e) {
                 System.out.println("Error: " + e.getMessage());

@@ -1,0 +1,25 @@
+
+// HelloWorld2.expresso
+
+/*
+  Boolean Logic
+  @author hooNous
+  @since Oct 6th, 2025
+*/
+
+let isZero = x -> x ? 0 : 1
+let TRUE  = 1
+let FALSE = 0
+
+let isTrue = x -> isZero(x) ? TRUE : FALSE
+
+let NOT = x -> x ? 0 : 1
+
+
+
+print(NOT(1))   // Expected 0
+print(FALSE)
+
+
+
+
