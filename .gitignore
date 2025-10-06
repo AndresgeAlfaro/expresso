@@ -1,0 +1,21 @@
+# Maven
+target/
+
+# IDEs 
+.classpath
+.project
+.settings/
+.idea/
+.iml
+.ipr
+.iws
+.vscode/
+
+# Other
+*.log
+*.tmp
+*.swp
+Thumbs.db
+
+
+
